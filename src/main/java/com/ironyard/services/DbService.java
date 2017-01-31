@@ -8,7 +8,7 @@ import java.sql.*;
 public class DbService {
     String url = "jdbc:postgresql://localhost:5432/postgres";
     String user = "postgres";
-    String password = "admin";
+    String password = "Dragon647#$";
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);

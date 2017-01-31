@@ -31,20 +31,39 @@ public class PetServiceTest {
     @Test
     public void getAllPetsFromDatabase() throws Exception {
         // TODO .. First insert stuff
-        System.out.println("getAllPetsFromDatabase");
-        PetService ps = new PetService();
-        List<Pet> found = ps.getAllPetsFromDatabase();
 
+        PetService ps = new PetService();
+
+        Pet pet = new Pet("Winston",7,"Rohan" ,"White", "Gorilla" );
+        Pet pet2 = new Pet("Presley",4,"George" ,"Brown", "Dog" );
+        Pet pet3 = new Pet("Redford",14,"Stephen" ,"Yellow", "Bird" );
+
+        ps.save(pet);
+        ps.save(pet2);
+        ps.save(pet3);
+
+        List<Pet> found = ps.getAllPetsFromDatabase();
+        System.out.println("getAllPetsFromDatabase");
         assertEquals("Found unexpected number of rows.",3, found.size());
     }
 
     @Test
     public void getPetByIdFromDatabase() throws Exception {
         // TODO .. First insert stuff
-        System.out.println("getPetByIdFromDatabase");
+
+        //System.out.println("getPetByIdFromDatabase");
         PetService ps = new PetService();
-        Pet found = ps.getPetById(4);
-        assertEquals("incorrect id",4, found.getId());
+        Pet pet = new Pet("Winston",7,"Rohan" ,"White", "Gorilla");
+        ps.save(pet);
+        //fetch pet by name
+        Pet foundByName = ps.getPetByName("Winston");
+        //fetch pet ID number
+        long fetchMeAgainByThisID = foundByName.getId();
+        //fetch the pet from the ID number saved
+        Pet found = ps.getPetById(fetchMeAgainByThisID);
+        System.out.println("getPetByIdFromDatabase");
+
+        assertEquals("incorrect id",fetchMeAgainByThisID, found.getId());
     }
 
     @Test
@@ -52,9 +71,10 @@ public class PetServiceTest {
         // TODO .. Fist insert stuff
         System.out.println("getPetByNameFromDatabase");
         PetService ps = new PetService();
+        ps.save (new Pet("pepper",2,"Rohan","Brown","dog"));
         Pet found = ps.getPetByName("pepper");
         assertNotNull(found);
-        assertEquals("incorrect id",3, found.getId());
+        assertEquals("incorrect id","pepper", found.getName());
     }
 
     @Test

@@ -1,3 +1,6 @@
+CREATE SEQUENCE  pets_pet_id_seq;
+
+
 CREATE TABLE helloworld.pets
 (
     pet_name varchar(26) NOT NULL,
